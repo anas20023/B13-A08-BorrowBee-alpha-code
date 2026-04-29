@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -25,37 +26,49 @@ const LoginPage = () => {
             return;
         }
 
-        // Assuming authClient.signIn.email exists (adjust method name if needed)
-        const { data, error } = await authClient.signIn.email({
-            email: formData.email,
-            password: formData.password,
-            callbackURL: "/", // redirect to home after login, or keep as "/dashboard"
-        });
-
-        if (data) {
-            toast.success("Login Successful!");
-            router.push('/'); // or router.push('/dashboard')
-        }
-        if (error) {
-            toast.error(error.message || "Something went wrong");
-            setFormData({
-                email: '',
-                password: '',
+        setIsLoading(true);
+        try {
+            const { data, error } = await authClient.signIn.email({
+                email: formData.email,
+                password: formData.password,
+                callbackURL: "/",
             });
+
+            if (data) {
+                toast.success("Login Successful!");
+                router.push('/');
+            }
+            if (error) {
+                toast.error(error.message || "Something went wrong");
+                setFormData({
+                    email: '',
+                    password: '',
+                });
+            }
+        } catch (err) {
+            toast.error("An unexpected error occurred");
+            console.error(err);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handleGoogleLogin = async () => {
-        // Example: redirect to Google OAuth or call authClient
-        toast.warning('Continue with Google clicked');
-        // If using authClient:
-        // await authClient.signIn.social({ provider: "google", callbackURL: "/" });
+        setIsLoading(true);
+        try {
+            toast.warning('Continue with Google clicked');
+            // If using authClient:
+            // await authClient.signIn.social({ provider: "google", callbackURL: "/" });
+        } catch (err) {
+            toast.error("Google login failed");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4 py-12 transition-colors">
             <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sm:p-8 transition-colors">
-                {/* Header */}
                 <div className="text-center mb-6">
                     <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                         Welcome back
@@ -65,7 +78,6 @@ const LoginPage = () => {
                     </p>
                 </div>
 
-                {/* Login Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Email */}
                     <div>
@@ -79,7 +91,8 @@ const LoginPage = () => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white transition-colors"
+                            disabled={isLoading}
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white transition-colors disabled:opacity-60"
                             placeholder="you@example.com"
                         />
                     </div>
@@ -96,7 +109,8 @@ const LoginPage = () => {
                             value={formData.password}
                             onChange={handleChange}
                             required
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white transition-colors"
+                            disabled={isLoading}
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white transition-colors disabled:opacity-60"
                             placeholder="••••••••"
                         />
                     </div>
@@ -104,9 +118,10 @@ const LoginPage = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full bg-indigo-600 dark:bg-indigo-500 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                        disabled={isLoading}
+                        className="w-full bg-indigo-600 dark:bg-indigo-500 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                        Log In
+                        {isLoading ? "Logging in..." : "Log In"}
                     </button>
                 </form>
 
@@ -116,7 +131,7 @@ const LoginPage = () => {
                         <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="px-2 bg-white dark:bg-gray-500 text-gray-500 dark:text-gray-400">
+                        <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
                             Or continue with
                         </span>
                     </div>
@@ -125,10 +140,11 @@ const LoginPage = () => {
                 {/* Google Login Button */}
                 <button
                     onClick={handleGoogleLogin}
-                    className="w-full flex items-center justify-center gap-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-4 rounded-md font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                    disabled={isLoading}
+                    className="w-full flex items-center justify-center gap-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-4 rounded-md font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                     <FcGoogle size={20} />
-                    <span>Continue with Google</span>
+                    <span>{isLoading ? "Please wait..." : "Continue with Google"}</span>
                 </button>
 
                 {/* Link to Registration Page */}

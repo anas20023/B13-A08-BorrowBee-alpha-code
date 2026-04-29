@@ -1,15 +1,27 @@
 'use client';
 
-import { Link } from "@heroui/react";
+import { authClient, useSession } from "@/utils/auth-client";
+import { Avatar, Button, Link } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const router=useRouter()
     const closeMenu = () => setIsMenuOpen(false);
-
+    const { data } = useSession()
+    // console.log(data?.user?.name)
+    const handleLogout = async() => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    router.push("/"); 
+                },
+            },
+        });
+    }
     return (
         <nav className="sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-sm">
             <div className="flex h-16 max-w-6xl mx-auto items-center justify-between px-4 sm:px-6">
@@ -60,12 +72,24 @@ const Navbar = () => {
 
                 {/* Login button */}
                 <div>
-                    <Link
-                        href="/login"
-                        className="bg-indigo-600 text-white px-5 py-2 rounded-md no-underline hover:bg-indigo-700 transition-colors font-medium inline-block"
-                    >
-                        Login
-                    </Link>
+                    {
+                        data ? <div className="flex flex-row justify-between items-center gap-2">
+                            <Avatar>
+                                <Avatar.Image alt="John Doe" src={data?.user.image} />
+                                <Avatar.Fallback>{data?.user.name.slice(0, 2).toUpperCase()}</Avatar.Fallback>
+                            </Avatar>
+                            <Button onClick={handleLogout} variant="outline">
+                                Logout
+                            </Button>
+                        </div> : <Link
+                            href="/login"
+                            className="bg-indigo-600 text-white px-5 py-2 rounded-md no-underline hover:bg-indigo-700 transition-colors font-medium inline-block"
+                        >
+                            Login
+                        </Link>
+                    }
+
+
                 </div>
             </div>
 
