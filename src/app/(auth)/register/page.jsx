@@ -2,8 +2,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
+import { authClient } from '@/utils/auth-client';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const RegistrationPage = () => {
+    const router=useRouter()
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -16,15 +20,37 @@ const RegistrationPage = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle registration logic here (API call, etc.)
-        console.log('Registration data:', formData);
+        if (!formData.fullName || !formData.email || !formData.password) {
+            toast.error("All Fields are are required !")
+            return
+        }
+        const { data, error } = await authClient.signUp.email({
+            name: formData.fullName,
+            email: formData.email,
+            password: formData.password,
+            image: formData.imageUrl,
+            callbackURL: "/login",
+        });
+        if (data) {
+            toast.success("Registration Successful !")
+            router.push('/login')
+        }
+        if (error) {
+            toast.error(error.message || "Something went Wrong")
+            setFormData({
+                fullName: '',
+                email: '',
+                password: '',
+                imageUrl: '',
+            })
+        }
     };
 
     const handleGoogleSignUp = () => {
         // Integrate Google OAuth here
-        console.log('Continue with Google clicked');
+        toast.warning('Continue with Google clicked');
     };
 
     return (
