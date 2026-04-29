@@ -2,25 +2,17 @@
 
 import { authClient, useSession } from "@/utils/auth-client";
 import { Avatar, Button, Link } from "@heroui/react";
-import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const router=useRouter()
     const closeMenu = () => setIsMenuOpen(false);
     const { data } = useSession()
     // console.log(data?.user?.name)
     const handleLogout = async() => {
-        await authClient.signOut({
-            fetchOptions: {
-                onSuccess: () => {
-                    router.push("/"); 
-                },
-            },
-        });
+        await authClient.signOut();
     }
     return (
         <nav className="sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-sm">
