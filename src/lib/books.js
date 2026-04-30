@@ -1,4 +1,3 @@
-'use server'
 const bookapi=process.env.API_URL
 export const getBooks= async()=>{
     try {
