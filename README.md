@@ -1,6 +1,6 @@
 # 🐝 BorrowBee
 
-**BorrowBee** is a modern peer-to-peer book borrowing platform that connects people who need items with those willing to lend them — making sharing simple, trusted, and community-driven.
+**BorrowBee** A seamless and modern web application designed to digitize the traditional library experience. Users can explore a vast collection of books, filter by categories, and borrow titles digitally.
 
 ---
 
@@ -61,4 +61,4 @@
 
 ---
 
-<p align="center">Made with ❤️ by the BorrowBee Team</p>
+Made with ❤️ by [Anas Ibn Belal](https://www.linkedin.com/in/anasibelal004/)
