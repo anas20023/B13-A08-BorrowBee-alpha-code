@@ -1,9 +1,17 @@
 const bookapi=process.env.API_URL
 export const getBooks= async()=>{
-    const res=(await fetch(`${bookapi}/books`)).json()
-    return res
+    try {
+        const res = await (await fetch(`${bookapi}/books`)).json()
+        return res
+    } catch (error) {
+        throw error
+    }
 }
 export const getBooksbyID= async(bookID)=>{
-    const res=(await fetch(`${bookapi}/books/${bookID}`)).json()
-    return res
+    try {
+        const res = await (await fetch(`${bookapi}/books/${bookID}`)).json()
+        return res
+    } catch (error) {
+        throw error
+    }
 }
