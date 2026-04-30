@@ -8,7 +8,7 @@ import { FaBookOpen } from 'react-icons/fa';
 const HeroSection = () => {
     return (
         <section className="bg-white dark:bg-gray-900 overflow-hidden">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-18 lg:py-22">
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
                     {/* Left side: Text content */}
                     <div className="flex-1 text-center lg:text-left">
