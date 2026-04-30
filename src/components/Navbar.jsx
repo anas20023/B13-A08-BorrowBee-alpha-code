@@ -64,6 +64,14 @@ const Navbar = () => {
                             All Books
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            href="#"
+                            className="text-gray-700 hover:text-indigo-600 no-underline transition-colors font-medium"
+                        >
+                           Featured Books
+                        </Link>
+                    </li>
                     {data && (
                         <li>
                             <Link
@@ -86,7 +94,7 @@ const Navbar = () => {
                             </Avatar>
                             <Button
                                 onClick={handleLogout}
-                                variant="outline"
+                                variant="danger"
                                 disabled={loading}
                             >
                                 {loading ? <Spinner size="sm" /> : "Logout"}
@@ -123,6 +131,15 @@ const Navbar = () => {
                                 className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
                             >
                                 All Books
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="#"
+                                onClick={closeMenu}
+                                className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
+                            >
+                                Featured Books
                             </Link>
                         </li>
                         {data && (
