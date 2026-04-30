@@ -60,7 +60,15 @@ const RegistrationPage = () => {
 
     const handleGoogleSignUp = async () => {
         setIsLoading(true);
-        toast.warning('Continue with Google clicked');
+        try {
+            await authClient.signIn.social({
+                provider: "google",
+            })
+            toast.success('Login with Google Successfully');
+        } catch (error) {
+            toast.error(error.message || 'Something went wrong');
+        }
+        setIsLoading(false);
     };
 
     return (

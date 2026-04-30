@@ -56,14 +56,14 @@ const LoginPage = () => {
     const handleGoogleLogin = async () => {
         setIsLoading(true);
         try {
-            toast.warning('Continue with Google clicked');
-            // If using authClient:
-            // await authClient.signIn.social({ provider: "google", callbackURL: "/" });
-        } catch (err) {
-            toast.error("Google login failed");
-        } finally {
-            setIsLoading(false);
+            await authClient.signIn.social({
+                provider: "google",
+            })
+            toast.success('Login with Google Successfully');
+        } catch (error) {
+            toast.error(error.message || 'Something went wrong');
         }
+        setIsLoading(false);
     };
 
     return (
