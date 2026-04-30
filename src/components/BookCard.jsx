@@ -1,11 +1,10 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { IoCopy } from "react-icons/io5";
 
-// Helper to render rating stars (optional)
 const renderRating = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
@@ -23,7 +22,6 @@ const renderRating = (rating) => {
         </div>
     );
 };
-
 const Card = ({ book }) => {
     return (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition-transform hover:shadow-md duration-300 flex flex-col h-full">
@@ -66,7 +64,7 @@ const Card = ({ book }) => {
                 
                 <div className="flex items-center justify-between mt-auto pt-2">
                     <span className="text-xs text-gray-500 dark:text-gray-400">
-                        📚 {book.available_quantity} available
+                        <IoCopy className='inline-block mb-1 mr-1 text-sky-800' size={14} /> {book.available_quantity} available
                     </span>
                     <Link
                         href={`/books/${book.id}`}

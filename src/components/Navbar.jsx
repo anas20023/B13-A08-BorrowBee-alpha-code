@@ -66,7 +66,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link
-                            href="#"
+                            href="/#featuredbooks"
                             className="text-gray-700 hover:text-indigo-600 no-underline transition-colors font-medium"
                         >
                            Featured Books
@@ -135,7 +135,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
-                                href="#"
+                                href="#featuredbooks"
                                 onClick={closeMenu}
                                 className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
                             >

@@ -5,7 +5,7 @@ const FeaturedBooks = async () => {
     const books = await getBooks();
     const featuredBooks = books.sort((a,b)=>Number(b.rating)-Number(a.rating)).slice(0, 4);
     return (
-        <section className="bg-gray-50 dark:bg-gray-900 py-8 md:py-10">
+        <section id="featuredbooks" className="bg-gray-50 dark:bg-gray-900 py-8 md:py-10">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="text-center mb-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
