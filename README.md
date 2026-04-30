@@ -1,4 +1,4 @@
-# 🐝 BorrowBee
+#  BorrowBee
 
 **BorrowBee** A seamless and modern web application designed to digitize the traditional library experience. Users can explore a vast collection of books, filter by categories, and borrow titles digitally.
 
