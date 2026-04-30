@@ -91,7 +91,7 @@ const Navbar = () => {
                 <div>
                     {data ? (
                         <div className="flex flex-row justify-between items-center gap-2">
-                            <Avatar>
+                            <Avatar className="cursor-pointer" onClick={()=>{router.push('/profile')}}>
                                 <Avatar.Image alt={data?.user?.name} src={data?.user?.image} />
                                 <Avatar.Fallback>{data?.user?.name?.slice(0, 2).toUpperCase()}</Avatar.Fallback>
                             </Avatar>
