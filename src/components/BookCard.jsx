@@ -67,7 +67,7 @@ const Card = ({ book }) => {
                         <IoCopy className='inline-block mb-1 mr-1 text-sky-800' size={14} /> {book.available_quantity} available
                     </span>
                     <Link
-                        href={`/books/${book.id}`}
+                        href={`/all-books/${book.id}`}
                         className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 text-sm font-medium transition-colors"
                     >
                         View Details →
