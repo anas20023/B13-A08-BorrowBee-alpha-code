@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🐝 BorrowBee
 
-## Getting Started
+**BorrowBee** is a modern peer-to-peer book borrowing platform that connects people who need items with those willing to lend them — making sharing simple, trusted, and community-driven.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌐 Live URL
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🔗 [https://borrowbee.vercel.app](https://borrowbee.vercel.app)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Key Features
 
-## Learn More
+- 🔐 **Authentication** — Secure sign-up and login powered by Better Auth with MongoDB session storage
+- 📦 **Item Listings** — Browse, post, and manage items available for borrowing
+- 🎠 **Marquee Announcements** — Smooth scrolling banners for featured items or platform highlights
+- 🔔 **Toast Notifications** — Real-time feedback for user actions (success, error, info)
+- 📱 **Responsive UI** — Fully responsive design built with HeroUI components and Tailwind CSS
+- ⚡ **Fast Performance** — Built on Next.js 16 with React 19 for blazing-fast load times
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack & NPM Packages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Frameworks & Core
 
-## Deploy on Vercel
+| Package | Version | Purpose |
+|---|---|---|
+| [`next`](https://nextjs.org) | 16.2.4 | React framework for SSR, routing, and API routes |
+| [`react`](https://react.dev) | 19.2.4 | UI library |
+| [`react-dom`](https://react.dev) | 19.2.4 | React DOM renderer |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### UI & Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Package | Version | Purpose |
+|---|---|---|
+| [`@heroui/react`](https://heroui.com) | ^3.0.3 | Pre-built accessible UI component library |
+| [`@heroui/styles`](https://heroui.com) | ^3.0.3 | HeroUI design tokens and base styles |
+| [`tailwindcss`](https://tailwindcss.com) | ^4 | Utility-first CSS framework |
+| [`react-icons`](https://react-icons.github.io/react-icons) | ^5.6.0 | Popular icon sets as React components |
+| [`react-fast-marquee`](https://www.react-fast-marquee.com) | ^1.6.5 | Smooth, performant scrolling marquee component |
+| [`react-toastify`](https://fkhadra.github.io/react-toastify) | ^11.1.0 | Elegant toast notification system |
+
+### Authentication & Database
+
+| Package | Version | Purpose |
+|---|---|---|
+| [`better-auth`](https://better-auth.com) | ^1.6.9 | Framework-agnostic authentication library |
+| [`@better-auth/mongo-adapter`](https://better-auth.com) | ^1.6.9 | MongoDB adapter for Better Auth sessions |
+| [`mongodb`](https://www.mongodb.com/docs/drivers/node) | ^7.2.0 | Official MongoDB Node.js driver |
+
+### Dev Dependencies
+
+| Package | Version | Purpose |
+|---|---|---|
+| [`eslint`](https://eslint.org) | ^9 | JavaScript/TypeScript linter |
+| [`eslint-config-next`](https://nextjs.org/docs/app/api-reference/config/eslint) | 16.2.4 | ESLint rules optimized for Next.js |
+| [`@tailwindcss/postcss`](https://tailwindcss.com/docs/installation/using-postcss) | ^4 | PostCSS plugin for Tailwind CSS v4 |
+| [`babel-plugin-react-compiler`](https://react.dev/learn/react-compiler) | 1.0.0 | Babel plugin for the React Compiler |
+
+---
+
+<p align="center">Made with ❤️ by the BorrowBee Team</p>
