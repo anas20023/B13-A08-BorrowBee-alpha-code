@@ -37,6 +37,7 @@ const LoginPage = () => {
             if (data) {
                 toast.success("Login Successful!");
                 router.push('/');
+                router.refresh()
             }
             if (error) {
                 toast.error(error.message || "Something went wrong");
