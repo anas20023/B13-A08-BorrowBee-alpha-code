@@ -2,6 +2,7 @@
 
 import { authClient } from "@/utils/auth-client";
 import { Avatar, Button, Link, Spinner } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
@@ -11,6 +12,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const { data } = authClient.useSession();
+    const router=useRouter()
 
     const closeMenu = () => setIsMenuOpen(false);
 
@@ -23,6 +25,7 @@ const Navbar = () => {
             toast.error(error.message)
         } finally {
             setLoading(false);
+            router.refresh()
         }
     };
 
