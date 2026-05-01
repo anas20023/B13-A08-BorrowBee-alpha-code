@@ -40,7 +40,7 @@ const BookGallery = ({ books }) => {
                                 sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw"
                                 priority={false}
                             />
-                            <div className="absolute inset-0 bg-black/60 flex flex-col justify-end p-4">
+                            <div className="absolute inset-0 bg-black/60 flex flex-col items-center md:items-start justify-end p-4">
                                 <h3 className="text-white text-lg md:text-xl font-bold line-clamp-2">
                                     {book.title}
                                 </h3>
