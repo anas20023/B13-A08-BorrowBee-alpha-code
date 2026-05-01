@@ -42,6 +42,14 @@
 | [`react-fast-marquee`](https://www.react-fast-marquee.com) | ^1.6.5 | Smooth, performant scrolling marquee component |
 | [`react-toastify`](https://fkhadra.github.io/react-toastify) | ^11.1.0 | Elegant toast notification system |
 
+### Animations & Smooth Scrolling
+
+| Package | Version | Purpose |
+|---|---|---|
+| [`framer-motion`](https://www.framer.com/motion/) | ^12.38.0 | Powerful animation library for React |
+| [`gsap`](https://gsap.com/) | ^3.15.0 | Robust JavaScript animation library |
+| [`lenis`](https://lenis.darkroom.engineering/) | ^1.3.23 | Lightweight smooth scrolling library |
+
 ### Authentication & Database
 
 | Package | Version | Purpose |
