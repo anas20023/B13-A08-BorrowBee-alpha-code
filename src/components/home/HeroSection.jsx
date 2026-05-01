@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FaBookOpen } from 'react-icons/fa';
 import { getBooks } from '@/lib/books';
 import BookGallery from '@/components/books/BookGallery';
+import { MotionDiv } from '@/components/MotionComponents';
 
 const HeroSection = async () => {
     const books = await getBooks();
@@ -11,7 +12,12 @@ const HeroSection = async () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24">
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-12">
                     {/* Left side: Text content */}
-                    <div className="flex-1 text-center lg:text-left">
+                    <MotionDiv 
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="flex-1 text-center lg:text-left"
+                    >
                         <div className="inline-flex items-center justify-center lg:justify-start mb-4">
                             <div className="bg-indigo-100 dark:bg-indigo-900/50 p-2 rounded-full">
                                 <FaBookOpen className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
@@ -49,12 +55,17 @@ const HeroSection = async () => {
                                 Community driven
                             </div>
                         </div>
-                    </div>
+                    </MotionDiv>
 
                     {/* Right side: Swiper Gallery */}
-                    <div className="min-w-0 flex justify-center items-start">
+                    <MotionDiv 
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                        className="min-w-0 flex justify-center items-start"
+                    >
                         <BookGallery books={books} />
-                    </div>
+                    </MotionDiv>
                 </div>
             </div>
         </section>

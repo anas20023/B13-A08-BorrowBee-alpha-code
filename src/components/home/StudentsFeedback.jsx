@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
 import { useRouter } from 'next/navigation';
 import { FaQuoteLeft } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const StudentsFeedback = () => {
     const router = useRouter();
@@ -48,7 +49,11 @@ const StudentsFeedback = () => {
     ];
 
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
             className="w-full bg-white dark:bg-gray-900 border-y border-indigo-100 dark:border-indigo-800 transition-colors"
         >
             {/* <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -94,7 +99,7 @@ const StudentsFeedback = () => {
                     ))}
                 </div>
             </Marquee>
-        </div>
+        </motion.div>
     );
 };
 

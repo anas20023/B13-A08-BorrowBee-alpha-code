@@ -1,10 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaFacebookF, FaTwitter, FaInstagram, FaGithub, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { MotionFooter } from '@/components/MotionComponents';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 dark:bg-gray-950 text-gray-300">
+        <MotionFooter 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="bg-gray-900 dark:bg-gray-950 text-gray-300"
+        >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Brand & Description */}
@@ -61,7 +68,7 @@ const Footer = () => {
                     © {new Date().getFullYear()} BorrowBee. All rights reserved.
                 </div>
             </div>
-        </footer>
+        </MotionFooter>
     );
 };
 
