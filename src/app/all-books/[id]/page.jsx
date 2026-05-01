@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getBooksbyID } from "@/lib/books";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaArrowLeft } from 'react-icons/fa';
-import BorrowButton from '@/components/BorrowButton';
+import BorrowButton from '@/components/books/BorrowButton';
 
 
 const renderRating = (rating) => {

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FaArrowLeft, FaUserEdit, FaEnvelope, FaCalendarAlt } from 'react-icons/fa';
 import { auth } from '@/utils/auth';
 import { headers } from 'next/headers';
-import EditProfileForm from '@/components/EditProfileForm';
+import EditProfileForm from '@/components/profile/EditProfileForm';
 import Image from 'next/image';
 
 const ProfilePage = async () => {

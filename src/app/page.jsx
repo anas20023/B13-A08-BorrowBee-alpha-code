@@ -1,11 +1,11 @@
-import BookOffer from "@/components/BookOffer";
-import ContactForm from "@/components/Contact";
-import FeaturedBooks from "@/components/FeaturedBooks";
-import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
-import Navbar from "@/components/Navbar";
-import StudentsFeedback from "@/components/StudentsFeedback";
-import Testimonials from "@/components/HowItWorks";
+import BookOffer from "@/components/books/BookOffer";
+import ContactForm from "@/components/home/Contact";
+import FeaturedBooks from "@/components/home/FeaturedBooks";
+import Footer from "@/components/home/Footer";
+import HeroSection from "@/components/home/HeroSection";
+import Navbar from "@/components/home/Navbar";
+import StudentsFeedback from "@/components/home/StudentsFeedback";
+import Testimonials from "@/components/home/HowItWorks";
 import ShowToast from "@/components/ShowToast";
 export default async function Home() {
   return (

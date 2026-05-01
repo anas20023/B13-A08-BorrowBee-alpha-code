@@ -61,10 +61,12 @@ const RegistrationPage = () => {
     const handleGoogleSignUp = async () => {
         setIsLoading(true);
         try {
-            await authClient.signIn.social({
+            const res = await authClient.signIn.social({
                 provider: "google",
             })
-            toast.success('Login with Google Successfully');
+            localStorage.setItem('islogin', 'true')
+            console.log(res, 'response')
+            // toast.success('Loggedin with Google Successfully');
         } catch (error) {
             toast.error(error.message || 'Something went wrong');
         }

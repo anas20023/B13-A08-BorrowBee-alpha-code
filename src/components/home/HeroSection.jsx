@@ -1,14 +1,15 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaBookOpen } from 'react-icons/fa';
+import { getBooks } from '@/lib/books';
+import BookGallery from '@/components/books/BookGallery';
 
-const HeroSection = () => {
+const HeroSection = async () => {
+    const books = await getBooks();
+
     return (
         <section className="bg-white dark:bg-gray-900 overflow-hidden">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-18 lg:py-22">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24">
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
                     {/* Left side: Text content */}
                     <div className="flex-1 text-center lg:text-left">
@@ -51,19 +52,9 @@ const HeroSection = () => {
                         </div>
                     </div>
 
-                    {/* Right side: Image */}
-                    <div className="flex-1 flex justify-center">
-                        <div className="relative w-full max-w-md lg:max-w-full aspect-square lg:aspect-auto lg:h-100 rounded-lg overflow-hidden shadow-lg">
-                            <Image
-                                src="https://i.ibb.co.com/Dft4DD8G/emil-widlund-xrbb-XIXAWY0-unsplash.jpg"
-                                alt="Person reading a book surrounded by floating books"
-                                fill
-                                className="object-cover"
-                                priority
-                                sizes="(max-width: 1024px) 100vw, 50vw"
-                                unoptimized // optional: if you don't want Next.js optimization for external images, or configure domains in next.config.js
-                            />
-                        </div>
+                    {/* Right side: Swiper Gallery */}
+                    <div className="flex-1 min-w-0 flex justify-center items-start">
+                        <BookGallery books={books} />
                     </div>
                 </div>
             </div>

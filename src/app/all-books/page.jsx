@@ -1,4 +1,4 @@
-import BooksContainer from "@/components/BooksContainer";
+import BooksContainer from "@/components/books/BooksContainer";
 import { getBooks } from "@/lib/books";
 
 const AllBooksPage = async () => {

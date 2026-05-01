@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import BookCard from "@/components/BookCard";
+import BookCard from "@/components/books/BookCard";
 import { FaSearch } from 'react-icons/fa';
 
 const BooksContainer = ({ books }) => {

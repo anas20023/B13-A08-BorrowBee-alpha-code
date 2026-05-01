@@ -1,9 +1,10 @@
 import { getBooks } from "@/lib/books";
-import Card from "./BookCard";
+import Card from "@/components/books/BookCard";
 import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 const FeaturedBooks = async () => {
     const books = await getBooks();
-    const featuredBooks = books.sort((a,b)=>Number(b.rating)-Number(a.rating)).slice(0, 4);
+    const featuredBooks = books.sort((a, b) => Number(b.rating) - Number(a.rating)).slice(0, 4);
     return (
         <section id="featuredbooks" className="bg-gray-50 dark:bg-gray-900 py-8 md:py-10">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -23,13 +24,13 @@ const FeaturedBooks = async () => {
                 </div>
 
                 <div className="text-center mt-8">
-                    <a
+                    <Link
                         href="/all-books"
                         className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors"
                     >
                         Browse all books
-                       <FaArrowRight/>
-                    </a>
+                        <FaArrowRight />
+                    </Link>
                 </div>
             </div>
         </section>
