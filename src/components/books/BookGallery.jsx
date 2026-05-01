@@ -26,11 +26,10 @@ const BookGallery = ({ books }) => {
                 pagination={{ clickable: true }}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 loop={galleryBooks.length > 2}
-                className="w-full rounded-lg overflow-hidden shadow-lg"
+                className="w-full rounded overflow-hidden shadow-lg"
             >
                 {galleryBooks.map((book) => (
                     <SwiperSlide key={book.id}>
-                        {/* ✅ Fixed height instead of portrait aspect ratio */}
                         <div className="relative w-full h-64 sm:h-72 lg:h-80 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
                             <Image
                                 src={book.image_url}
@@ -39,8 +38,9 @@ const BookGallery = ({ books }) => {
                                 className="object-cover"
                                 sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw"
                                 priority={false}
+                                loading='lazy'
                             />
-                            <div className="absolute inset-0 bg-black/60 flex flex-col items-center md:items-start justify-end p-4">
+                            <div className="absolute inset-0 bottom-3 flex flex-col items-center md:items-start justify-end p-4">
                                 <h3 className="text-white text-lg md:text-xl font-bold line-clamp-2">
                                     {book.title}
                                 </h3>
