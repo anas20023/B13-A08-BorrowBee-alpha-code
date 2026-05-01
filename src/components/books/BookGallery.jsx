@@ -18,7 +18,7 @@ const BookGallery = ({ books }) => {
     const galleryBooks = books.slice(0, 8);
 
     return (
-        <div className="relative w-full max-w-sm md:max-w-xl lg:max-w-xl mx-auto">
+        <div className="relative w-full max-w-sm md:max-w-lg lg:max-w-xl mx-auto">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={20}
