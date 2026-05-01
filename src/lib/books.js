@@ -15,3 +15,11 @@ export const getBooksbyID= async(bookID)=>{
         throw error
     }
 }
+export const getBooksbyCategory= async(category)=>{
+    try {
+        const res = await (await fetch(`${bookapi}/books`)).json()
+        return res.filter((book=>book.category===category)).slice(0,4)
+    } catch (error) {
+        throw error
+    }
+}

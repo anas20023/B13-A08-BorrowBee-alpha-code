@@ -6,11 +6,10 @@ import BookGallery from '@/components/books/BookGallery';
 
 const HeroSection = async () => {
     const books = await getBooks();
-
     return (
         <section className="bg-white dark:bg-gray-900 overflow-hidden">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24">
-                <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
+                <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-12">
                     {/* Left side: Text content */}
                     <div className="flex-1 text-center lg:text-left">
                         <div className="inline-flex items-center justify-center lg:justify-start mb-4">
@@ -53,7 +52,7 @@ const HeroSection = async () => {
                     </div>
 
                     {/* Right side: Swiper Gallery */}
-                    <div className="flex-1 min-w-0 flex justify-center items-start">
+                    <div className="min-w-0 flex justify-center items-start">
                         <BookGallery books={books} />
                     </div>
                 </div>
