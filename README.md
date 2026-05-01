@@ -6,7 +6,7 @@
 
 ## 🌐 Live URL
 
-🔗 [https://borrowbee.vercel.app](https://borrowbee.vercel.app)
+🔗 [BorrowBee](https://b13-a08-borrow-bee-alpha-code.vercel.app/)
 
 ---
 
