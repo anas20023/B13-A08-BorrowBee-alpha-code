@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "BorrowBee | Login",
+  title: "BorrowBee | Registration",
   description:
     "Discover, borrow, and manage books online with BorrowBee.",
   keywords: ["online library", "book borrowing", "digital books", "BorrowBee"],
