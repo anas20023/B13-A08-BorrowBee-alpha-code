@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +31,12 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-sm">
+        <motion.nav 
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="sticky top-0 z-40 w-full bg-white border-b border-gray-200 shadow-sm"
+        >
             <div className="flex h-16 max-w-6xl mx-auto items-center justify-between px-4 sm:px-6">
                 {/* Logo + mobile menu button */}
                 <div className="flex items-center gap-4">
@@ -159,7 +165,7 @@ const Navbar = () => {
                     </ul>
                 </div>
             )}
-        </nav>
+        </motion.nav>
     );
 };
 

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaClock, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -27,7 +28,13 @@ const ContactForm = () => {
     };
 
     return (
-        <section className="bg-white dark:bg-gray-900 py-16 md:py-20">
+        <motion.section 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="bg-white dark:bg-gray-900 py-16 md:py-20"
+        >
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
@@ -164,7 +171,7 @@ const ContactForm = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 };
 
