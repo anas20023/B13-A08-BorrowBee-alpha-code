@@ -8,12 +8,19 @@ import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import NavLink from "../NavLink";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const { data } = authClient.useSession();
-    const router=useRouter()
+    const router = useRouter()
+
+    const navLinks = [
+        { label: 'Home', href: '/' },
+        { label: 'All Books', href: '/all-books' },
+        { label: 'Featured Books', href: '/#featuredbooks' },
+    ];
 
     const closeMenu = () => setIsMenuOpen(false);
 
@@ -31,7 +38,7 @@ const Navbar = () => {
     };
 
     return (
-        <motion.nav 
+        <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -57,38 +64,14 @@ const Navbar = () => {
 
                 {/* Desktop navigation */}
                 <ul className="hidden md:flex items-center gap-6">
-                    <li>
-                        <Link
-                            href="/"
-                            className="text-gray-700 hover:text-indigo-600 no-underline transition-colors font-medium"
-                        >
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/all-books"
-                            className="text-gray-700 hover:text-indigo-600 no-underline transition-colors font-medium"
-                        >
-                            All Books
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/#featuredbooks"
-                            className="text-gray-700 hover:text-indigo-600 no-underline transition-colors font-medium"
-                        >
-                           Featured Books
-                        </Link>
-                    </li>
+                    {navLinks.map((item) => (
+                        <li key={item.href}>
+                            <NavLink link={item.href}>{item.label}</NavLink>
+                        </li>
+                    ))}
                     {data && (
                         <li>
-                            <Link
-                                href="/profile"
-                                className="text-gray-700 hover:text-indigo-600 no-underline transition-colors font-medium"
-                            >
-                                My Profile
-                            </Link>
+                            <NavLink link="/profile">My Profile</NavLink>
                         </li>
                     )}
                 </ul>
@@ -97,7 +80,7 @@ const Navbar = () => {
                 <div>
                     {data ? (
                         <div className="flex flex-row justify-between items-center gap-2">
-                            <p className="line-clamp-1 text-zinc-700 font-bold"> Welcome, {data?.user?.name.split(' ',1)}</p>
+                            <p className="line-clamp-1 text-zinc-700 font-bold"> Welcome, {data?.user?.name.split(' ', 1)}</p>
                             <Button
                                 onClick={handleLogout}
                                 variant="danger"
@@ -121,42 +104,18 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="md:hidden border-t border-gray-200 bg-white shadow-lg">
                     <ul className="flex flex-col gap-1 p-4">
-                        <li>
-                            <Link
-                                href="/"
-                                onClick={closeMenu}
-                                className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/all-books"
-                                onClick={closeMenu}
-                                className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
-                            >
-                                All Books
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="#featuredbooks"
-                                onClick={closeMenu}
-                                className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
-                            >
-                                Featured Books
-                            </Link>
-                        </li>
+                        {navLinks.map((item) => (
+                            <li key={item.href}>
+                                <NavLink link={item.href} onClick={closeMenu}>
+                                    {item.label}
+                                </NavLink>
+                            </li>
+                        ))}
                         {data && (
                             <li>
-                                <Link
-                                    href="/profile"
-                                    onClick={closeMenu}
-                                    className="block py-2.5 px-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-md no-underline transition-colors font-medium"
-                                >
+                                <NavLink link="/profile" onClick={closeMenu}>
                                     My Profile
-                                </Link>
+                                </NavLink>
                             </li>
                         )}
                     </ul>
