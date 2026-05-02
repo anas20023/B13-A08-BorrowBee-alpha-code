@@ -1,3 +1,5 @@
+import Navbar from "@/components/home/Navbar";
+
 export const metadata = {
   title: "BorrowBee | User Profile",
   description:
@@ -7,6 +9,7 @@ export const metadata = {
 const AuthLayout = ({ children }) => {
   return (
     <>
+      <Navbar />
       {children}
     </>
   )
