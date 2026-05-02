@@ -1,7 +1,7 @@
 'use client';
 
 import { authClient } from "@/utils/auth-client";
-import { Avatar, Button, Link, Spinner } from "@heroui/react";
+import { Button, Link, Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { MdMenu } from "react-icons/md";

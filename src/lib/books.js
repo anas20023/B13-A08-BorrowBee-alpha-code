@@ -15,10 +15,10 @@ export const getBooksbyID= async(bookID)=>{
         throw error
     }
 }
-export const getBooksbyCategory= async(category)=>{
+export const getBooksbyCategory= async(category,id)=>{
     try {
         const res = await (await fetch(`${bookapi}/books`)).json()
-        return res.filter((book=>book.category===category)).slice(0,4)
+        return res.filter((book=>(book.category===category && book.id !==Number(id)))).slice(0,4)
     } catch (error) {
         throw error
     }

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { getBooksbyCategory, getBooksbyID } from "@/lib/books";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaArrowLeft, FaBookOpen, FaUser, FaTag, FaCheckCircle } from 'react-icons/fa';
 import BorrowButton from '@/components/books/BorrowButton';
-
+import BookCard from '@/components/books/BookCard'
 const renderRating = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
@@ -25,7 +25,7 @@ const renderRating = (rating) => {
 const BookDetails = async ({ params }) => {
     const { id } = await params;
     const book = await getBooksbyID(id);
-    const similar = await getBooksbyCategory(book.category)
+    const similar = await getBooksbyCategory(book.category,id)
     if (!book) {
         return (
             <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
@@ -201,58 +201,9 @@ const BookDetails = async ({ params }) => {
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-                            {similar?.map((book, index) => (
-                                <div
-                                    key={book.id || index}
-                                    className="flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-                                >
-                                    {/* Image Container with Category Badge */}
-                                    <div className="relative w-full h-40 bg-gray-200 dark:bg-gray-700 overflow-hidden">
-                                        {book.image_url ? (
-                                            <Image
-                                                src={book.image_url}
-                                                alt={book.title}
-                                                fill
-                                                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                                className="object-cover hover:scale-105 transition-transform duration-300"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
-                                                No image
-                                            </div>
-                                        )}
-
-                                        {/* Category Tag - top right corner */}
-                                        {book.category && (
-                                            <span className="absolute top-2 right-2 bg-indigo-600/90 dark:bg-indigo-500/90 backdrop-blur-sm text-white text-xs font-semibold px-2 py-1 rounded-md shadow-md">
-                                                {book.category}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {/* Book Info */}
-                                    <div className="flex flex-col grow p-4">
-                                        <h3 className="font-semibold text-gray-800 dark:text-white text-sm md:text-base line-clamp-2 mb-3">
-                                            {book.title}
-                                        </h3>
-
-                                        {/* Optional: Author */}
-                                        {book.author && (
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-3 line-clamp-1">
-                                                by {book.author}
-                                            </p>
-                                        )}
-
-                                        {/* View Details Button */}
-                                        <Link
-                                            href={`/all-books/${book.id}`}
-                                            className="mt-auto inline-block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200"
-                                        >
-                                            View details
-                                        </Link>
-                                    </div>
-                                </div>
-                            ))}
+                           {
+                            similar.map((book,index)=><BookCard key={index} book={book}/>)
+                           }
                         </div>
                     </div>
                 </div>

@@ -62,7 +62,7 @@ const HeroSection = async () => {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                        className="min-w-0 flex justify-center items-start"
+                        className="w-full lg:flex-1 min-w-0 flex justify-center items-start"
                     >
                         <BookGallery books={books} />
                     </MotionDiv>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import { IoCopy } from "react-icons/io5";
+import { Button } from '@heroui/react';
 
 const renderRating = (rating) => {
     const fullStars = Math.floor(rating);
@@ -51,26 +52,19 @@ const Card = ({ book }) => {
                     by {book.author}
                 </p>
                 
-                <div className="flex items-center gap-2 mt-1 mb-3">
+                {/* <div className="flex items-center gap-2 mt-1 mb-3">
                     {renderRating(book.rating)}
                     <span className="text-xs text-gray-500 dark:text-gray-400">
                         ({book.rating})
                     </span>
-                </div>
-                
-                <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-3">
-                    {book.description}
-                </p>
+                </div> */}
                 
                 <div className="flex items-center justify-between mt-auto pt-2">
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                        <IoCopy className='inline-block mb-1 mr-1 text-sky-800' size={14} /> {book.available_quantity} available
-                    </span>
                     <Link
                         href={`/all-books/${book.id}`}
                         className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 text-sm font-medium transition-colors"
                     >
-                        View Details →
+                       <Button>View Details</Button>
                     </Link>
                 </div>
             </div>
