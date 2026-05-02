@@ -97,10 +97,7 @@ const Navbar = () => {
                 <div>
                     {data ? (
                         <div className="flex flex-row justify-between items-center gap-2">
-                            <Avatar className="cursor-pointer" onClick={()=>{router.push('/profile')}}>
-                                <Avatar.Image alt={data?.user?.name} src={data?.user?.image} />
-                                <Avatar.Fallback>{data?.user?.name?.slice(0, 2).toUpperCase()}</Avatar.Fallback>
-                            </Avatar>
+                            <p className="line-clamp-1 text-zinc-700 font-bold"> Welcome, {data?.user?.name.split(' ',1)}</p>
                             <Button
                                 onClick={handleLogout}
                                 variant="danger"
