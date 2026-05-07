@@ -1,5 +1,3 @@
-import { data } from "framer-motion/client"
-
 const bookapi=process.env.API_URL
 export const getBooks= async()=>{
     try {
