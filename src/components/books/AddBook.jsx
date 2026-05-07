@@ -1,5 +1,6 @@
 "use client";
 
+import { createBookAction } from "@/utils/actions";
 import {
     Button,
     Input,
@@ -9,13 +10,20 @@ import {
     TextArea,
     TextField
 } from "@heroui/react";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AddBookModal = () => {
 
     const handleSubmit = async (formData) => {
-        const data = Object.fromEntries(formData.entries());
-        console.log("Form Submitted");
-        console.log(data);
+        // 'use server';
+        try {
+            await createBookAction(formData)
+            toast.success("Book Added !")
+            redirect('/all-books')
+        } catch (error) {
+            toast.error(error.message || "Failed to Add Book")
+        }   
     };
 
     return (
