@@ -1,3 +1,5 @@
+import { data } from "framer-motion/client"
+
 const bookapi=process.env.API_URL
 export const getBooks= async()=>{
     try {
@@ -24,7 +26,9 @@ export const getBooksbyCategory= async(category,id)=>{
         const res = await fetch(`${bookapi}/books`,{
             cache:'force-cache'
         })
-        return res.json().filter((book=>(book.category===category && book.id !==Number(id)))).slice(0,4)
+        const books=await res.json()
+        // console.log(books)
+        return books.filter((book=>(book.category===category && book.id !==Number(id)))).slice(0,4)
     } catch (error) {
         throw error
     }
