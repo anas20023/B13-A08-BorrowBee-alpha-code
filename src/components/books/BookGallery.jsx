@@ -29,7 +29,7 @@ const BookGallery = ({ books }) => {
                 className="w-full rounded-xl overflow-hidden shadow-lg"
             >
                 {galleryBooks.map((book) => (
-                    <SwiperSlide key={book.id}>
+                    <SwiperSlide key={book._id}>
                         <div className="relative w-full aspect-auto min-h-72 sm:min-h-80 bg-gray-200 dark:bg-gray-700 rounded-xl overflow-hidden">
                             <Image
                                 src={book.image_url}
@@ -46,7 +46,7 @@ const BookGallery = ({ books }) => {
                                     {book.title}
                                 </h3>
                                 <Link
-                                    href={`/all-books/${book.id}`}
+                                    href={`/all-books/${book._id}`}
                                     className="mt-2 inline-flex items-center justify-center gap-1 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-3 py-1.5 rounded-md transition-colors w-fit"
                                 >
                                     View Details

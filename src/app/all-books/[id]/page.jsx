@@ -25,7 +25,8 @@ const renderRating = (rating) => {
 const BookDetails = async ({ params }) => {
     const { id } = await params;
     const book = await getBooksbyID(id);
-    const similar = await getBooksbyCategory(book.category,id)
+    console.log(book)
+    const similar = await getBooksbyCategory(id,book.category)
     if (!book) {
         return (
             <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
@@ -133,13 +134,13 @@ const BookDetails = async ({ params }) => {
                                             <p className="text-sm font-semibold text-gray-800 dark:text-white">{book.category}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                                    {/* <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                                         <FaTag className="text-purple-500 dark:text-purple-400 text-lg" />
                                         <div>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">Book ID</p>
-                                            <p className="text-sm font-semibold text-gray-800 dark:text-white font-mono">{book.id}</p>
+                                            <p className="text-sm font-semibold text-gray-800 dark:text-white font-mono">{book._id}</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 {/* Description */}
@@ -202,7 +203,7 @@ const BookDetails = async ({ params }) => {
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
                            {
-                            similar.map((book,index)=><BookCard key={index} book={book}/>)
+                            similar && similar.map((book,index)=><BookCard key={index} book={book}/>)
                            }
                         </div>
                     </div>
