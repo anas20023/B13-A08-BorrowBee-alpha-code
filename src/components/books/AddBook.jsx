@@ -16,14 +16,78 @@ import { toast } from "react-toastify";
 const AddBookModal = () => {
 
     const handleSubmit = async (formData) => {
-        // 'use server';
+
+        const data = Object.fromEntries(formData.entries());
+
+        // Trim values
+        const title = data.title?.trim();
+        const author = data.author?.trim();
+        const description = data.description?.trim();
+        const category = data.category?.trim();
+        const image_url = data.image_url?.trim();
+
+        const available_quantity = Number(data.available_quantity);
+        const rating = Number(data.rating);
+
+        // Validation
+        if (!title) {
+            return toast.error("Title is required");
+        }
+
+        if (title.length < 3) {
+            return toast.error("Title must be at least 3 characters");
+        }
+
+        if (!author) {
+            return toast.error("Author name is required");
+        }
+
+        if (author.length < 2) {
+            return toast.error("Author name is too short");
+        }
+
+        if (!description) {
+            return toast.error("Description is required");
+        }
+
+        if (description.length < 20) {
+            return toast.error("Description must be at least 20 characters");
+        }
+
+        if (!category) {
+            return toast.error("Category is required");
+        }
+
+        if (!available_quantity || available_quantity < 1) {
+            return toast.error("Available quantity must be greater than 0");
+        }
+
+        if (isNaN(rating)) {
+            return toast.error("Rating is required");
+        }
+
+        if (rating < 1 || rating > 5) {
+            return toast.error("Rating must be between 1 and 5");
+        }
+
+        if (!image_url) {
+            return toast.error("Image URL is required");
+        }
+
+        // URL validation
         try {
-            await createBookAction(formData)
-            toast.success("Book Added !")
+            new URL(image_url);
+        } catch {
+            return toast.error("Please enter a valid image URL");
+        }
+
+        try {
+            await createBookAction(formData);
+            toast.success("Book Added!");
             redirect('/all-books')
         } catch (error) {
-            toast.error(error.message || "Failed to Add Book")
-        }   
+            toast.error(error.message || "Failed to Add Book");
+        }
     };
 
     return (
@@ -50,18 +114,24 @@ const AddBookModal = () => {
                                     {/* Title */}
                                     <TextField className="w-full">
                                         <Label>Title</Label>
+
                                         <Input
                                             name="title"
                                             placeholder="Enter book title"
+                                            required
+                                            minLength={3}
                                         />
                                     </TextField>
 
                                     {/* Author */}
                                     <TextField className="w-full">
                                         <Label>Author</Label>
+
                                         <Input
                                             name="author"
                                             placeholder="Enter author name"
+                                            required
+                                            minLength={2}
                                         />
                                     </TextField>
 
@@ -73,6 +143,8 @@ const AddBookModal = () => {
                                             className="w-full"
                                             name="description"
                                             placeholder="Enter Description"
+                                            required
+                                            minLength={20}
                                         />
                                     </div>
 
@@ -82,7 +154,8 @@ const AddBookModal = () => {
 
                                         <Input
                                             name="category"
-                                            placeholder="Enter category (comma separated)"
+                                            placeholder="Enter category"
+                                            required
                                         />
                                     </TextField>
 
@@ -94,6 +167,8 @@ const AddBookModal = () => {
                                             name="available_quantity"
                                             type="number"
                                             placeholder="Enter Available Quantity"
+                                            required
+                                            min={1}
                                         />
                                     </TextField>
 
@@ -105,6 +180,10 @@ const AddBookModal = () => {
                                             name="rating"
                                             type="number"
                                             placeholder="Enter rating"
+                                            required
+                                            min={1}
+                                            max={5}
+                                            step="0.1"
                                         />
                                     </TextField>
 
@@ -114,18 +193,25 @@ const AddBookModal = () => {
 
                                         <Input
                                             name="image_url"
+                                            type="url"
                                             placeholder="Enter Image Url"
+                                            required
                                         />
                                     </TextField>
 
                                     <Modal.Footer>
-                                        <Button slot="close" variant="secondary">
+
+                                        <Button
+                                            slot="close"
+                                            variant="secondary"
+                                        >
                                             Cancel
                                         </Button>
 
                                         <Button type="submit">
                                             Add Book
                                         </Button>
+
                                     </Modal.Footer>
 
                                 </form>
