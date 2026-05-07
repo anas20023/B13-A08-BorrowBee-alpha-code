@@ -25,7 +25,7 @@ const renderRating = (rating) => {
 const BookDetails = async ({ params }) => {
     const { id } = await params;
     const book = await getBooksbyID(id);
-    console.log(book)
+    // console.log(book)
     const similar = await getBooksbyCategory(id,book.category)
     if (!book) {
         return (

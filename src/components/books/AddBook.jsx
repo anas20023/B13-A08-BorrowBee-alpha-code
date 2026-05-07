@@ -1,58 +1,125 @@
 "use client";
 
-import { Button, Input, Label, Modal, Surface, TextArea, TextField } from "@heroui/react";
+import {
+    Button,
+    Input,
+    Label,
+    Modal,
+    Surface,
+    TextArea,
+    TextField
+} from "@heroui/react";
 
 const AddBookModal = () => {
-    const handleSubmit=(e)=>{
-        e.preventDefault()
-        console.log("Form Submitted")
-    }
+
+    const handleSubmit = async (formData) => {
+        const data = Object.fromEntries(formData.entries());
+        console.log("Form Submitted");
+        console.log(data);
+    };
+
     return (
         <Modal>
-            <Button className={'fixed right-10 bottom-10 z-10000'}>Add Book</Button>
+            <Button className="fixed right-10 bottom-10 z-50">
+                Add Book
+            </Button>
+
             <Modal.Backdrop>
                 <Modal.Container placement="auto">
                     <Modal.Dialog className="sm:max-w-md md:max-w-lg">
+
                         <Modal.CloseTrigger />
+
                         <Modal.Header>
                             <Modal.Heading>Add New Book</Modal.Heading>
                         </Modal.Header>
+
                         <Modal.Body className="p-4">
                             <Surface variant="default">
-                                <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
-                                    <TextField className="w-full" name="title" type="text">
+
+                                <form action={handleSubmit} className="flex flex-col gap-4">
+
+                                    {/* Title */}
+                                    <TextField className="w-full">
                                         <Label>Title</Label>
-                                        <Input placeholder="Enter book title" />
+                                        <Input
+                                            name="title"
+                                            placeholder="Enter book title"
+                                        />
                                     </TextField>
-                                    <TextField className="w-full" name="author" type="text">
+
+                                    {/* Author */}
+                                    <TextField className="w-full">
                                         <Label>Author</Label>
-                                        <Input placeholder="Enter author name" />
+                                        <Input
+                                            name="author"
+                                            placeholder="Enter author name"
+                                        />
                                     </TextField>
-                                    <Label>Description</Label>
-                                    <TextArea className="w-full" name="description" type="text" defaultValue={"Enter Description"} >
-                                    </TextArea>
-                                    <TextField className="w-full" name="catagory" type="text">
-                                        <Label>Catagory</Label>
-                                        <Input placeholder="Enter catagory (comma separeted)" />
+
+                                    {/* Description */}
+                                    <div className="flex flex-col gap-2">
+                                        <Label>Description</Label>
+
+                                        <TextArea
+                                            className="w-full"
+                                            name="description"
+                                            placeholder="Enter Description"
+                                        />
+                                    </div>
+
+                                    {/* Category */}
+                                    <TextField className="w-full">
+                                        <Label>Category</Label>
+
+                                        <Input
+                                            name="category"
+                                            placeholder="Enter category (comma separated)"
+                                        />
                                     </TextField>
-                                    <TextField className="w-full" name="available_quantity">
+
+                                    {/* Quantity */}
+                                    <TextField className="w-full">
                                         <Label>Available Quantity</Label>
-                                        <Input placeholder="Enter Available Quantity" />
+
+                                        <Input
+                                            name="available_quantity"
+                                            type="number"
+                                            placeholder="Enter Available Quantity"
+                                        />
                                     </TextField>
-                                    <TextField className="w-full" name="number">
+
+                                    {/* Rating */}
+                                    <TextField className="w-full">
                                         <Label>Rating</Label>
-                                        <Input placeholder="Enter rating" />
+
+                                        <Input
+                                            name="rating"
+                                            type="number"
+                                            placeholder="Enter rating"
+                                        />
                                     </TextField>
-                                    <TextField className="w-full" name="text">
+
+                                    {/* Image URL */}
+                                    <TextField className="w-full">
                                         <Label>Image Url</Label>
-                                        <Input placeholder="Enter Image Url" />
+
+                                        <Input
+                                            name="image_url"
+                                            placeholder="Enter Image Url"
+                                        />
                                     </TextField>
+
                                     <Modal.Footer>
                                         <Button slot="close" variant="secondary">
                                             Cancel
                                         </Button>
-                                        <Button type="submit">Add Book</Button>
+
+                                        <Button type="submit">
+                                            Add Book
+                                        </Button>
                                     </Modal.Footer>
+
                                 </form>
                             </Surface>
                         </Modal.Body>
@@ -62,5 +129,6 @@ const AddBookModal = () => {
             </Modal.Backdrop>
         </Modal>
     );
-}
-export default AddBookModal
+};
+
+export default AddBookModal;

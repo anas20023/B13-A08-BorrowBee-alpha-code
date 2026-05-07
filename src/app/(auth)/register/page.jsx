@@ -65,7 +65,7 @@ const RegistrationPage = () => {
                 provider: "google",
             })
             localStorage.setItem('islogin', 'true')
-            console.log(res, 'response')
+           // console.log(res, 'response')
             // toast.success('Loggedin with Google Successfully');
         } catch (error) {
             toast.error(error.message || 'Something went wrong');

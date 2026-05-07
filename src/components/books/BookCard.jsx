@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@heroui/react';
 
 const Card = ({ book }) => {
-    console.log(book)
+   // console.log(book)
     return (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition-transform hover:shadow-md duration-300 flex flex-col h-full">
             {/* Image */}
