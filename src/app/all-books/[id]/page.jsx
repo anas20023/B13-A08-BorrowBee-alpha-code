@@ -4,6 +4,8 @@ import { getBooksbyCategory, getBooksbyID } from "@/lib/books";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaArrowLeft, FaBookOpen, FaUser, FaTag, FaCheckCircle } from 'react-icons/fa';
 import BorrowButton from '@/components/books/BorrowButton';
 import BookCard from '@/components/books/BookCard'
+import { Button } from '@heroui/react';
+import ManageBook from '@/components/books/ManageBook';
 const renderRating = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
@@ -26,7 +28,7 @@ const BookDetails = async ({ params }) => {
     const { id } = await params;
     const book = await getBooksbyID(id);
     // console.log(book)
-    const similar = await getBooksbyCategory(id,book.category)
+    const similar = await getBooksbyCategory(id, book.category)
     if (!book) {
         return (
             <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
@@ -47,7 +49,6 @@ const BookDetails = async ({ params }) => {
             </div>
         );
     }
-
     return (
         <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 md:py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +69,7 @@ const BookDetails = async ({ params }) => {
                     <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
                         {/* Top gradient accent bar */}
                         <div className="h-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-
+                        <ManageBook bookID={book._id} />
                         <div className="flex flex-col lg:flex-row gap-8 p-6 md:p-8 lg:p-10">
                             {/* Left: Image Section */}
                             <div className="lg:w-2/5">
@@ -94,11 +95,10 @@ const BookDetails = async ({ params }) => {
                                 {/* Title and Category Row */}
                                 <div className="flex flex-wrap justify-between items-start gap-3 mb-4">
                                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white leading-tight">
-                                        {book.title}
+                                        {book.title}  <span className="px-3 py-1.5 rounded-full bg-linear-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 text-xs md:text-sm font-semibold border border-indigo-200 dark:border-indigo-800 shadow-sm">
+                                            {book.category}
+                                        </span>
                                     </h1>
-                                    <span className="px-3 py-1.5 rounded-full bg-linear-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 text-xs md:text-sm font-semibold border border-indigo-200 dark:border-indigo-800 shadow-sm">
-                                        {book.category}
-                                    </span>
                                 </div>
 
                                 {/* Author */}
@@ -202,9 +202,9 @@ const BookDetails = async ({ params }) => {
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-                           {
-                            similar && similar.map((book,index)=><BookCard key={index} book={book}/>)
-                           }
+                            {
+                                similar && similar.map((book, index) => <BookCard key={index} book={book} />)
+                            }
                         </div>
                     </div>
                 </div>

@@ -10,10 +10,17 @@ import {
     TextArea,
     TextField
 } from "@heroui/react";
-import { redirect } from "next/navigation";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FiPlus } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const AddBookModal = () => {
+
+    const router = useRouter();
+
+    const [open, setOpen] = useState(false);
 
     const handleSubmit = async (formData) => {
 
@@ -74,7 +81,7 @@ const AddBookModal = () => {
             return toast.error("Image URL is required");
         }
 
-        // URL validation
+        // URL Validation
         try {
             new URL(image_url);
         } catch {
@@ -82,37 +89,63 @@ const AddBookModal = () => {
         }
 
         try {
+
             await createBookAction(formData);
+
             toast.success("Book Added!");
-            redirect('/all-books')
+
+            // Close Modal
+            setOpen(false);
+
+            // Refresh Data
+            router.refresh();
+
         } catch (error) {
+
             toast.error(error.message || "Failed to Add Book");
+
         }
     };
 
     return (
-        <Modal>
-            <Button className="fixed right-10 bottom-10 z-50">
+
+        <Modal isOpen={open} onOpenChange={setOpen}>
+
+            {/* Open Button */}
+            <Button
+                className="fixed right-10 bottom-10 z-50"
+                onClick={() => setOpen(true)}
+            >
+                <FiPlus size={18} />
                 Add Book
             </Button>
 
             <Modal.Backdrop>
+
                 <Modal.Container placement="auto">
+
                     <Modal.Dialog className="sm:max-w-md md:max-w-lg">
 
                         <Modal.CloseTrigger />
 
                         <Modal.Header>
-                            <Modal.Heading>Add New Book</Modal.Heading>
+                            <Modal.Heading>
+                                Add New Book
+                            </Modal.Heading>
                         </Modal.Header>
 
                         <Modal.Body className="p-4">
+
                             <Surface variant="default">
 
-                                <form action={handleSubmit} className="flex flex-col gap-4">
+                                <form
+                                    action={handleSubmit}
+                                    className="flex flex-col gap-4"
+                                >
 
                                     {/* Title */}
                                     <TextField className="w-full">
+
                                         <Label>Title</Label>
 
                                         <Input
@@ -121,10 +154,12 @@ const AddBookModal = () => {
                                             required
                                             minLength={3}
                                         />
+
                                     </TextField>
 
                                     {/* Author */}
                                     <TextField className="w-full">
+
                                         <Label>Author</Label>
 
                                         <Input
@@ -133,10 +168,12 @@ const AddBookModal = () => {
                                             required
                                             minLength={2}
                                         />
+
                                     </TextField>
 
                                     {/* Description */}
                                     <div className="flex flex-col gap-2">
+
                                         <Label>Description</Label>
 
                                         <TextArea
@@ -146,10 +183,12 @@ const AddBookModal = () => {
                                             required
                                             minLength={20}
                                         />
+
                                     </div>
 
                                     {/* Category */}
                                     <TextField className="w-full">
+
                                         <Label>Category</Label>
 
                                         <Input
@@ -157,10 +196,12 @@ const AddBookModal = () => {
                                             placeholder="Enter category"
                                             required
                                         />
+
                                     </TextField>
 
-                                    {/* Quantity */}
+                                    {/* Available Quantity */}
                                     <TextField className="w-full">
+
                                         <Label>Available Quantity</Label>
 
                                         <Input
@@ -170,10 +211,12 @@ const AddBookModal = () => {
                                             required
                                             min={1}
                                         />
+
                                     </TextField>
 
                                     {/* Rating */}
                                     <TextField className="w-full">
+
                                         <Label>Rating</Label>
 
                                         <Input
@@ -185,10 +228,12 @@ const AddBookModal = () => {
                                             max={5}
                                             step="0.1"
                                         />
+
                                     </TextField>
 
                                     {/* Image URL */}
                                     <TextField className="w-full">
+
                                         <Label>Image Url</Label>
 
                                         <Input
@@ -197,6 +242,7 @@ const AddBookModal = () => {
                                             placeholder="Enter Image Url"
                                             required
                                         />
+
                                     </TextField>
 
                                     <Modal.Footer>
@@ -215,12 +261,17 @@ const AddBookModal = () => {
                                     </Modal.Footer>
 
                                 </form>
+
                             </Surface>
+
                         </Modal.Body>
 
                     </Modal.Dialog>
+
                 </Modal.Container>
+
             </Modal.Backdrop>
+
         </Modal>
     );
 };
